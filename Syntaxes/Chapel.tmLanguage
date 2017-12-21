@@ -23,13 +23,13 @@
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(align|as|atomic|begin|break|by|catch|class|cobegin|coforall|continue|delete|dmapped|do|else|enum|except|export|extern|for|forall|if|index|inline|in|iter|label|lambda|let|local|module|new|noinit|on|only|otherwise|pragma|private|proc|prototype|public|record|reduce|require|return|scan|select|serial|then|throw|throws|try|union|use|var|when|where|while|with|yield|zip)\b</string>
+			<string>\b(align|as|atomic|begin|break|by|catch|class|cobegin|coforall|continue|delete|dmapped|do|else|enum|except|export|extern|for|forall|if|index|inline|in|inout|iter|label|lambda|let|local|module|new|noinit|on|only|otherwise|out|pragma|private|proc|prototype|public|record|reduce|ref|require|return|scan|select|serial|then|throw|throws|try|union|use|var|when|where|while|with|yield|zip)\b</string>
 			<key>name</key>
 			<string>keyword.control.chapel</string>
 		</dict>
 		<dict>
 			<key>match</key>
-			<string>\b(bool|real|int|uint|imag|complex|dmap|domain|string|range|tuple)\b</string>
+			<string>\b(bool|real|int|uint|imag|complex|dmap|domain|opaque|string|range|subdomain|sync|tuple)\b</string>
 			<key>name</key>
 			<string>storage.type.chapel</string>
 		</dict>
@@ -85,10 +85,6 @@
 				<dict>
 					<key>include</key>
 					<string>#string_escaped_char</string>
-				</dict>
-				<dict>
-					<key>include</key>
-					<string>#string_placeholder</string>
 				</dict>
 			</array>
 		</dict>
@@ -379,10 +375,28 @@
 		<key>illegal_names</key>
 		<dict>
 			<key>match</key>
-			<string>\b(align|as|atomic|begin|break|by|catch|class|cobegin|coforall|continue|delete|dmapped|do|else|enum|except|export|extern|for|forall|if|index|inline|in|iter|label|lambda|let|local|module|new|noinit|on|only|otherwise|pragma|private|proc|public|record|reduce|require|return|scan|select|serial|then|throw|throws|try|union|use|var|when|where|while|with|yield|zip)\b</string>
+			<string>\b(align|as|atomic|begin|break|by|catch|class|cobegin|coforall|continue|delete|dmapped|do|else|enum|except|export|extern|for|forall|if|index|inline|in|inout|iter|label|lambda|let|local|module|new|noinit|on|only|otherwise|out|pragma|private|proc|public|record|reduce|ref|require|return|scan|select|serial|then|throw|throws|try|union|use|var|when|where|while|with|yield|zip)\b</string>
 			<key>name</key>
 			<string>invalid.illegal.name.chapel</string>
 		</dict>
+		<key>string_escaped_char</key>
+		<dict>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>match</key>
+					<string>\\(\\|[abefnprtv'"?]|[0-3]\d{0,2}|[4-7]\d?|x[a-fA-F0-9]{0,2}|u[a-fA-F0-9]{0,4}|U[a-fA-F0-9]{0,8})</string>
+					<key>name</key>
+					<string>constant.character.escape.c</string>
+				</dict>
+				<dict>
+					<key>match</key>
+					<string>\\.</string>
+					<key>name</key>
+					<string>invalid.illegal.unknown-escape.c</string>
+				</dict>
+			</array>
+		</dict>		
 	</dict>
 	<key>scopeName</key>
 	<string>source.chapel</string>
